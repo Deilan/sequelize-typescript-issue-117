@@ -23,6 +23,7 @@ async function main(): Promise<void> {
     sequelize.addModels([Product, User, Address]);
     await sequelize.sync();
     await createProduct();
+    const closeResult = await (sequelize as any).connectionManager.close();
     cleanupCallback();
 }
 
