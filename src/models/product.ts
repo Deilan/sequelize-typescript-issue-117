@@ -7,5 +7,5 @@ export default class Product extends Model<Product> {
     public title: string;
 
     @HasMany(() => User, { foreignKey: "productId" })
-    public public: User[] = [];
+    public users: User[] = [];
 }

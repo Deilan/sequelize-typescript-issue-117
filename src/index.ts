@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import { Sequelize } from "sequelize-typescript";
-import { tmpFileAsync } from "./tmp";
+import tmpAsync from "./tmp-async-helpers";
 
 import Address from "./models/address";
 import Product from "./models/product";
@@ -10,7 +10,7 @@ import User from "./models/user";
 // import Team from "./models/team";
 
 async function main(): Promise<void> {
-    const { path, cleanupCallback } = await tmpFileAsync();
+    const { path, cleanupCallback } = await tmpAsync.file();
     // tslint:disable:object-literal-sort-keys
     const sequelize = new Sequelize({
         name: "db",
@@ -42,11 +42,10 @@ async function createProduct(): Promise<Product> {
             }],
         },
     }, {
-            include: [{
-                association: (Product as any).User,
-                include: [ (User as any).Addresses ],
-            }],
-        });
+        include: [{
+            association: { source: Product, target: User, identifier: "users" },
+        }],
+    });
     // tslint:enable:object-literal-sort-keys
     return product;
 }
