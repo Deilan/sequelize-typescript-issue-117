@@ -30,17 +30,17 @@ async function createProduct(): Promise<Product> {
     // tslint:disable:object-literal-sort-keys
     const product = await Product.create<Product>({
         title: "Chair",
-        user: {
-            first_name: "Mick",
-            last_name: "Broadstone",
+        users: [{
+            firstName: "Mick",
+            lastName: "Broadstone",
             addresses: [{
                 type: "home",
-                line_1: "100 Main St.",
+                line1: "100 Main St.",
                 city: "Austin",
                 state: "TX",
                 zip: "78704",
             }],
-        },
+        }],
     }, {
         include: [{model: User, include: [Address]}],
     });
