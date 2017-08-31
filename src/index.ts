@@ -42,8 +42,11 @@ async function createProduct(): Promise<Product> {
             }],
         },
     }, {
-        include: [User, Address],
-    });
+            include: [{
+                association: (Product as any).User,
+                include: [ (User as any).Addresses ],
+            }],
+        });
     // tslint:enable:object-literal-sort-keys
     return product;
 }
