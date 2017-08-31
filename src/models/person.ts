@@ -3,7 +3,6 @@ import Team from "./team";
 
 @Table
 export default class Player extends Model<Player> {
-
     @Column
     public name: string;
 
