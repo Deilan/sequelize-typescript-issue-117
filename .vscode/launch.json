@@ -11,7 +11,11 @@
             "runtimeArgs": [
                 "--exitcrash",
                 "--config", "${workspaceRoot}/nodemon.json",
-                "--exec", "${workspaceRoot}/node_modules/.bin/ts-node", "${workspaceRoot}/src/index.ts"
+                "--exec", "${workspaceRoot}/node_modules/.bin/ts-node"
+            ],
+            "args": [
+                "${workspaceRoot}/src/index.ts",
+                "--project", "${workspaceRoot}/tsconfig.json"
             ],
             "restart": true,
             "console": "integratedTerminal",
